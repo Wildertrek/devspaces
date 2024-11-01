@@ -1,0 +1,42 @@
+schemaVersion: 2.2.0
+metadata:
+  name: azure-dev
+  displayName: Azure DevSpace
+  description: An Azure DevSpace built on top of quay.io/devfile/universal-developer-image:ubi8-latest
+  icon: https://landscape.cncf.io/logos/devfile.svg
+  tags:
+    - azure
+    - development
+  projectType: universal
+  version: 0.1.0
+components:
+  - name: dev
+    container:
+      dockerfile:
+        uri: ./Dockerfile
+        buildContext: ${PROJECT_SOURCE}
+        rootRequired: false
+      cpuLimit: 4000m
+      cpuRequest: 500m
+      memoryLimit: 4G
+      memoryRequest: 512Mi
+      env:
+        # enables "podman run" within container
+        #   The podman build -t <image> . && podman run <image> command will fail. 
+        #   Use podman build -t <image> . && podman push <image> && podman run <image> instead.
+        - name: KUBEDOCK_ENABLED ## https://eclipse.dev/che/docs/stable/end-user-guide/running-containers-with-kubedock/
+          value: 'true'
+
+      endpoints:
+        ##  Endpoints are used to expose a port in workspace/container - https://devfile.io/docs/2.0.0/defining-endpoints
+        # kubedock with no exposure. Within workspace only.
+        - exposure: none
+          name: kubedock
+          protocol: tcp
+          targetPort: 2475
+        # Example to expose some webserver via Route/Ingress:
+        - name: 'web'
+          targetPort: 8080
+          exposure: public
+          protocol: http
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
