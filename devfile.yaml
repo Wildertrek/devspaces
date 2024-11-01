@@ -43,4 +43,3 @@ components:
           targetPort: 8080
           exposure: public
           protocol: http
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
