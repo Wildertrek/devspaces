@@ -10,17 +10,9 @@ metadata:
   projectType: universal
   version: 0.1.0
 components:
-  - name: dev-image
-    image:
-      imageName: azure-dev
-      autoBuild: true
-      dockerfile:
-        uri: ./Dockerfile
-        buildContext: ${PROJECT_SOURCE}
-        rootRequired: false
-  - name: dev-container
+  - name: dev
     container:
-      image: azure-dev:latest
+      image: quay.vapo.va.gov/oitsyrlemonc1/azure-devspace:latest
       cpuLimit: 4000m
       cpuRequest: 500m
       memoryLimit: 4G
