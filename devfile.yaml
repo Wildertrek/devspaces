@@ -10,12 +10,16 @@ metadata:
   projectType: universal
   version: 0.1.0
 components:
-  - name: dev
-    container:
+  - name: dev-image
+    image:
+      imageName: azure-dev
       dockerfile:
         uri: ./Dockerfile
         buildContext: ${PROJECT_SOURCE}
         rootRequired: false
+  - name: dev-container
+    container:
+      image: azure-dev:latest
       cpuLimit: 4000m
       cpuRequest: 500m
       memoryLimit: 4G
