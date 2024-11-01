@@ -13,10 +13,10 @@ components:
   - name: dev-image
     image:
       imageName: azure-dev
+      autoBuild: true
       dockerfile:
         uri: ./Dockerfile
         buildContext: ${PROJECT_SOURCE}
-        autoBuild: true
         rootRequired: false
   - name: dev-container
     container:
