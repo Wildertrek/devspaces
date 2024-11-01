@@ -16,6 +16,7 @@ components:
       dockerfile:
         uri: ./Dockerfile
         buildContext: ${PROJECT_SOURCE}
+        autoBuild: true
         rootRequired: false
   - name: dev-container
     container:
