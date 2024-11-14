@@ -12,10 +12,10 @@ metadata:
 components:
   - name: dev
     container:
-      image: quay.vapo.va.gov/oitsyrlemonc1/azure-devspace:latest
+      image: quay.vapo.va.gov/oithamraetaj/azure-devspaces:latest
       cpuLimit: 4000m
       cpuRequest: 500m
-      memoryLimit: 4G
+      memoryLimit: 8G
       memoryRequest: 512Mi
       env:
         # enables "podman run" within container
